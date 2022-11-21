@@ -124,11 +124,20 @@ s
 ;P1	P2	P3	P4	P5	P6	P7	P8
 ;INSTR	START	DUR	AMP	if0	ip	im	indx
 
+; se im è 1, lo spettro contiene tutti gli armonici
 i2	0	1	-12	200	1	1	1
 i2	+	.	.	.	2	.	.
+; se ip è dispari, compaiono soltanto armonici dispari 
 i2	+	.	.	.	3	.	.
-i2	+	.	.	.	4	.	.
 i2	+	.	.	.	5	.	.
+; se im è 3, mancano i terzi armonici
+i2	+	.	.	.	2	3	.
+i2	+	.	.	.	4	.	.
+i2	+	.	.	.	6	.	.
+; se % != 0 di ip/im spettro inarmonico
+i2	+	.	.	.	3	5	.
+i2	+	.	.	.	6	3	.
+ 
 s
 
 ;P1	P2	P3	P4	P5	P6	P7

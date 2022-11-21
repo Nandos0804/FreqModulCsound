@@ -1,8 +1,11 @@
 <CsoundSynthesizer>
 
 ;############################################################################
-; LA MUSICA ELETTRONICA 
-; PDF PAGINA 216
+; in sintesi fm, la frequenza portante varia per mezzo della frequenza
+; modulante che impone una deviazione di picco. Le deviazioni
+; sottraggono energia alla portante, generando un numero crescente
+; di frequenze laterali. la larghezza di banda ottenuta e uguale a
+; 2(deviazione di picco + modulante)
 ;############################################################################
 
 <CsOptions>
