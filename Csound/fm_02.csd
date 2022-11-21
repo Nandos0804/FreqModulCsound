@@ -59,6 +59,14 @@ aOut	poscil	aEnv, iPortante +   aMod	; PORTANTE
 
 endin
 
+; kres adsr iatt, idec, islev, irel [, idel]
+; iatt -- duration of attack phase
+; idec -- duration of decay
+; islev -- level for sustain phase
+; irel -- duration of release phase
+; idel -- period of zero before the envelope starts
+
+
 </CsInstruments>
 
 <CsScore>
