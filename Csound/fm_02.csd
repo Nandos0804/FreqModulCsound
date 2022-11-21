@@ -59,12 +59,8 @@ aOut	poscil	aEnv, iPortante +   aMod	; PORTANTE
 
 endin
 
-; kres adsr iatt, idec, islev, irel [, idel]
-; iatt -- duration of attack phase
-; idec -- duration of decay
-; islev -- level for sustain phase
-; irel -- duration of release phase
-; idel -- period of zero before the envelope starts
+; kres linsegr ia, idur1, ib [, idur2] [, ic] [...], irel, iz
+; indice linesgr valore, in tempo, valore, in tempo, ..., durata e poi valore in chiusura
 
 
 </CsInstruments>
