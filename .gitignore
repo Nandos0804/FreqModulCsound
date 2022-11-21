@@ -1,1 +1,2 @@
-prova
+# ignore all mac file
+*.DS_Store
