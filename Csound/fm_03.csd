@@ -1,7 +1,7 @@
 <CsoundSynthesizer>
 
 ;############################################################################
-; INTORNO FREQ BASE
+; STRUMENTO CON CONTROLLO RANDOMICO FREQ CENTRALE
 ;############################################################################
 
 <CsOptions>

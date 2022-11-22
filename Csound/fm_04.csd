@@ -1,7 +1,7 @@
 <CsoundSynthesizer>
 
 ;############################################################################
-; STRUMENTO CON CONTROLLO RANDOMICO DEI RAPPORTI
+; STRUMENTO CON CONTROLLO RANDOMICO FREQ CENTRALE E RAPPORTI IM IP
 ;############################################################################
 
 <CsOptions>
@@ -29,15 +29,12 @@ nchnls = 1
 ; DEFINE FORSE DA IMPLEMENTARE IN SCORE
 ;############################################################################
 
-; RANGE DEVIAZIONE, NUMERO ARMONICI
-#define RANGE #20#
-; RANDOM IP/IM SPEED, CHANGES THE VALUE OF IP AND IM
-#define RAPSPEED #10#
 ; INTORNO FREQ CENTR
 #define BWCEN #20#
 ; SPEED OF BW CHANGE
 #define BWSPEED #10#
-
+; VARIZIONE OF IM IP
+#define PMSPEED #10#
 
 ;############################################################################
 ; IMPLEMENTARE SCHEDULE
@@ -45,7 +42,7 @@ nchnls = 1
 
 instr 1
 
-iAmp    =   ampdb(p4)
+iAmp        =   ampdb(p4)
 
 ; DEVIAZIONE FREQUENZA BASE
 iFreqBase   =   p5
@@ -55,39 +52,29 @@ kFreqBW randi $BWCEN / 2, $BWSPEED
 ; frequenza base con intorno 
 kFreqBase = iFreqBase + kFreqBW
 
+; VARIAZIONI
+kVarPor randi p6, $PMSPEED, 0, 0, p6
+printk 1, kVarPor
+kVarMod randi p7, $PMSPEED, 0, 0, p7
+printk 1, kVarMod
 
-;kPortante = p6  * kFreqBase
-
-; RANGE INTERVALLO IP
-kPortante   randi p6,   $RAPSPEED
-kPortante = p6 * kFreqBase 
-printk 1, kPortante
-
-;kModulante = p7 * kFreqBase
-
-; RANGE INTERVALLO IM
-kModulante  randi p7,   $RAPSPEED
-kModulante = p7 * kFreqBase
-printk 1, kModulante
+; Relazione a frequenza e variazione, forse +
+kPortante =  kVarPor + kFreqBase 
+kModulante = kVarMod + kFreqBase 
 
 ; Velocita cambio rapporti di modulazione
-iVariationSpeed = p8
-
-; VALORI MODULAZIONE
-kDev    randi    $RANGE, iVariationSpeed
+kDev = p8
 
 ; MODULANTE
-aMod	poscil	kDev + $RANGE,	kModulante	; MODULANTE
+aMod	poscil	kDev * kModulante ,	kModulante
 
 ; ENV
-aEnv 	linen	iAmp,	.1,	p3,	.1
+aEnv 	linen	iAmp,   .1, p3,	.1
 
 ; PORTANTE
-aOut	poscil	aEnv, kPortante +   aMod	; PORTANTE
+aOut	poscil	aEnv, kPortante +   aMod
 
     out aOut
-
-;schedule(1, 5, 10, -12,1200 , 2, 1, 1000)
 
 endin
 
@@ -103,10 +90,15 @@ f1 0 32768 10 1
 ;############################################################################
 ; SCORE
 ;############################################################################
-;p1	    p2	    p3	p4      p5	    p6          P7          P8
-;INSTR	START	DUR	AMP     FR.BAS	Port Range	Mod Range   Speed rapporti mod
-;                           CENTRO
-i1      0       5   -12     440     1          2           10
+;p1	    p2	    p3	    p4      p5	        p6        P7          P8
+;INSTR	START	DUR	    AMP     FR.BAS	    FR        FR          DEV
+;                               CENTRO      PORT      MODUL
+i1      0       5       -12     440         1         2           0
+i1      +       .       .       .           .         .           1
+i1      +       .       .       .           1         2           10
+i1      +       .       .       .           1         2           2
+i1      +       .       .       .           2.5       4           5
+i1      +       .       .       .           3         2.5         .
 e
 
 </CsScore>
