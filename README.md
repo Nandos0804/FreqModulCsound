@@ -1,11 +1,11 @@
 # FM Csound Synthesis
 
 Codice rielaborato dal Manuale della Musica Elettronica - Pousseur
-fm02 modello base
-fm03 freq base con intorno
-fm04 im e ip con intorno
-fm05 index intorno
-fm06 intorno tutto
+- fm02 modello base
+- fm03 freq base con intorno
+- fm04 im e ip con intorno
+- fm05 index intorno
+- fm06 intorno tutto
 
 
 ## Contributi
@@ -19,6 +19,7 @@ Una qualsiasi versione di csound. Le patch di Max contengono esempi di pari pass
 
 ## To Do 
 - Andamento Index non solo come line, ma sotto forma di adsr
+- Tutti i segnali di controllo sotto forma di audio
 
 ## License
 
