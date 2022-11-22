@@ -1,6 +1,12 @@
 # FM Csound Synthesis
 
 Codice rielaborato dal Manuale della Musica Elettronica - Pousseur
+fm02 modello base
+fm03 freq base con intorno
+fm04 im e ip con intorno
+fm05 index intorno
+fm06 intorno tutto
+
 
 ## Contributi
 
@@ -12,7 +18,7 @@ Melchiorre Titone per implementazioni di alcuni esempi per strumenti acustici
 Una qualsiasi versione di csound. Le patch di Max contengono esempi di pari passo.
 
 ## To Do 
-    - Andamento Index non solo come line, ma sotto forma di adsr
+- Andamento Index non solo come line, ma sotto forma di adsr
 
 ## License
 
