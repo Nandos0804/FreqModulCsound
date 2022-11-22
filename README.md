@@ -20,6 +20,7 @@ Una qualsiasi versione di csound. Le patch di Max contengono esempi di pari pass
 ## To Do 
 - Andamento Index non solo come line, ma sotto forma di adsr
 - Tutti i segnali di controllo sotto forma di audio
+- Interfaccia Web
 
 ## License
 
