@@ -3,6 +3,7 @@
 ;############################################################################
 ; STRUMENTO CON CONTROLLO RANDOMICO FREQ CENTRALE E RAPPORTI IM IP
 ; E INDEX MODUL
+; !!!!! add tonex? !!!!
 ;############################################################################
 
 <CsOptions>
@@ -11,7 +12,7 @@
 ; OPZIONI EXPORT
 ;############################################################################
 
--o 05_fm.wav -W 
+-o 06_fm.wav -W 
 
 </CsOptions>
 
@@ -36,6 +37,8 @@ nchnls = 1
 #define BWSPEED #10#
 ; VARIZIONE OF IM IP
 #define PMSPEED #10#
+; RIPETIZIONI LETTURA FTABLE PER ENV
+#define ENVSPEED #3#
 
 ;############################################################################
 ; IMPLEMENTARE SCHEDULE
@@ -70,10 +73,16 @@ kDev line 0 , p3, p8
 aMod	poscil	kDev * kModulante ,	kModulante
 
 ; ENV
-aEnv 	linen	iAmp,   .1, p3,	.1
+iFnEnv  =   p9
+
+kRep init  $ENVSPEED / p3  ; Ripetizione lettura
+
+kIndex phasor kRep 
+
+kEnv 	tablei kIndex, iFnEnv, 1
 
 ; PORTANTE
-aOut	poscil	aEnv, kPortante +   aMod
+aOut	poscil	kEnv, kPortante +   aMod
 
     out aOut
 
@@ -86,20 +95,29 @@ endin
 ;############################################################################
 ; FUNCTION 
 ;############################################################################
-f1 0 32768 10 1
-
+;   P1      P2      P3      P4     P5
+;   NUMBER  START   SIZE    GEN    ARG
+    f1      0       32768    10     1                                   ;sine
+;                                   BREAK POINT, START AT PX
+;                                   IN PY GOES TO PZ
+;                                     | ATTACK  | DECAY  | SUSTAIN | RELEASE
+;                                     |         |        |         |         
+;                                     |         |        |         |         
+;                                     |         |        |         |         
+;                                     |         |        |         |         
+    f2      0       32768    7    0.  8192  0.8  8192 0.5  8192 0.2  8192 0.
 ;############################################################################
 ; SCORE
 ;############################################################################
-;p1	    p2	    p3	    p4      p5	        p6        P7          P8
-;INSTR	START	DUR	    AMP     FR.BAS	    FR        FR          DEV
-;                               CENTRO      PORT      MODUL       TARGET
-i1      0       5       -12     440         1         2           2
-i1      +       .       .       .           .         .           1
-i1      +       .       .       .           1         2           10
-i1      +       .       .       .           1         2           2
-i1      +       .       .       .           2.5       4           5
-i1      +       .       .       .           3         2.5         .
+;p1	    p2	    p3	    p4      p5	        p6        P7          P8       P9
+;INSTR	START	DUR	    AMP     FR.BAS	    FR        FR          DEV      ENV
+;                               CENTRO      PORT      MODUL       TARGET   TYP
+i1      0       5       -12     440         1         2           2        2
+i1      +       .       .       .           .         .           1        .
+i1      +       .       .       .           1         2           10       .
+i1      +       .       .       .           1         2           2        .
+i1      +       .       .       .           2.5       4           5        .
+i1      +       .       .       .           3         2.5         .        .
 e
 
 </CsScore>
