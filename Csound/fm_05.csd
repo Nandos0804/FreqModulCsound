@@ -1,7 +1,8 @@
 <CsoundSynthesizer>
 
 ;############################################################################
-; STRUMENTO CON CONTROLLO RANDOMICO DEI RAPPORTI, FREQ CENTRALE E INDICE MOD
+; STRUMENTO CON CONTROLLO RANDOMICO FREQ CENTRALE E RAPPORTI IM IP
+; E INDEX MODUL
 ;############################################################################
 
 <CsOptions>
@@ -28,6 +29,7 @@ nchnls = 1
 ;############################################################################
 ; DEFINE FORSE DA IMPLEMENTARE IN SCORE
 ;############################################################################
+
 ; INTORNO FREQ CENTR
 #define BWCEN #20#
 ; SPEED OF BW CHANGE
@@ -62,7 +64,7 @@ kPortante =  kVarPor + kFreqBase
 kModulante = kVarMod + kFreqBase 
 
 ; Velocita cambio rapporti di modulazione
-kDev = p8
+kDev line 0 , p3, p8
 
 ; MODULANTE
 aMod	poscil	kDev * kModulante ,	kModulante
@@ -91,15 +93,14 @@ f1 0 32768 10 1
 ;############################################################################
 ;p1	    p2	    p3	    p4      p5	        p6        P7          P8
 ;INSTR	START	DUR	    AMP     FR.BAS	    FR        FR          DEV
-;                               CENTRO      PORT      MODUL
-i1      0       5       -12     440         1         2           0
+;                               CENTRO      PORT      MODUL       TARGET
+i1      0       5       -12     440         1         2           2
 i1      +       .       .       .           .         .           1
 i1      +       .       .       .           1         2           10
 i1      +       .       .       .           1         2           2
 i1      +       .       .       .           2.5       4           5
 i1      +       .       .       .           3         2.5         .
 e
-
 
 </CsScore>
 
