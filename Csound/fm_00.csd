@@ -41,7 +41,7 @@ ifm	=	p6	; MODULATING FREQUENCY
 idev	=	iindx	*	ifm
 
 ; ENV.
-aenv	linen	.1,	0.01,	p3,	0.01
+aenv	cosseg 	0,	0.01,	1, p3 - 0.02, 1,	0.01, 0
 
 ; MODULATION
 amod	poscil	idev,	ifm,	1

@@ -18,9 +18,9 @@ Melchiorre Titone per implementazioni di alcuni esempi per strumenti acustici
 Una qualsiasi versione di csound. Le patch di Max contengono esempi di pari passo.
 
 ## To Do 
-- Andamento Index non solo come line, ma sotto forma di adsr
-- Tutti i segnali di controllo sotto forma di audio
-- Interfaccia Web
+- replace poscil with poscil3
+- forse aggiungere logica di 05_BW a 6
+- midi realtime?
 
 ## License
 

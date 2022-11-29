@@ -10,7 +10,7 @@
 ; OPZIONI EXPORT
 ;############################################################################
 
--o 04_fm.wav -W 
+-o 04_fm_vario.wav -W 
 
 </CsOptions>
 
@@ -30,11 +30,11 @@ nchnls = 1
 ;############################################################################
 
 ; INTORNO FREQ CENTR
-#define BWCEN #20#
+#define BWCEN #8#
 ; SPEED OF BW CHANGE
 #define BWSPEED #10#
 ; VARIZIONE OF IM IP
-#define PMSPEED #10#
+#define PMSPEED #500#
 
 ;############################################################################
 ; IMPLEMENTARE SCHEDULE
@@ -52,10 +52,10 @@ kFreqBW randi $BWCEN / 2, $BWSPEED
 ; frequenza base con intorno 
 kFreqBase = iFreqBase + kFreqBW
 
-; VARIAZIONI
-kVarPor randi p6, $PMSPEED, 0, 0, p6
+; VARIAZIONI, 3p clock da sistema, 4p on
+kVarPor randi p6, $PMSPEED, 2, 1, p6
 printk 1, kVarPor
-kVarMod randi p7, $PMSPEED, 0, 0, p7
+kVarMod randi p7, $PMSPEED, 2, 1, p7
 printk 1, kVarMod
 
 ; Relazione a frequenza e variazione, forse +
@@ -93,12 +93,12 @@ f1 0 32768 10 1
 ;p1	    p2	    p3	    p4      p5	        p6        P7          P8
 ;INSTR	START	DUR	    AMP     FR.BAS	    FR        FR          DEV
 ;                               CENTRO      PORT      MODUL
-i1      0       5       -12     440         1         2           0
-i1      +       .       .       .           .         .           1
-i1      +       .       .       .           1         2           10
-i1      +       .       .       .           1         2           2
-i1      +       .       .       .           2.5       4           5
-i1      +       .       .       .           3         2.5         .
+i1      0       5       -12     440         1         10           0
+i1      +       .       .       .           .         20        1
+i1      +       .       .       .           1         40           10
+i1      +       .       .       .           1         80           2
+i1      +       .       .       .           2.5       100           5
+i1      +       .       .       .           3         200         .
 e
 
 </CsScore>

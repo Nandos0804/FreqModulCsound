@@ -38,7 +38,7 @@ nchnls = 1
 ; VARIZIONE OF IM IP
 #define PMSPEED #10#
 ; RIPETIZIONI LETTURA FTABLE PER ENV
-#define ENVSPEED #3#
+#define ENVSPEED #1#
 
 ;############################################################################
 ; IMPLEMENTARE SCHEDULE
@@ -70,7 +70,7 @@ kModulante = kVarMod + kFreqBase
 kDev line 0 , p3, p8
 
 ; MODULANTE
-aMod	poscil	kDev * kModulante ,	kModulante
+aMod	poscil3	kDev * kModulante ,	kModulante
 
 ; ENV
 iFnEnv  =   p9
@@ -82,7 +82,7 @@ kIndex phasor kRep
 kEnv 	tablei kIndex, iFnEnv, 1
 
 ; PORTANTE
-aOut	poscil	kEnv, kPortante +   aMod
+aOut	poscil3	kEnv, kPortante +   aMod
 
     out aOut
 
